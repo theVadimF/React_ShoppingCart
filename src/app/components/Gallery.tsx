@@ -56,13 +56,12 @@ export default function Gallery({images}: any) {
       <div className={style.images} style={imgPos}>
         {images.map((img: string, id) => (
           <div className={style.img_wrapper} key={id}>
-            <img alt="promo background" src={img.img}/>
+            <img alt="promo background" src={img.img} className={style.bg}/>
             <div className={style.img_overlay}>
               <div className={style.img_text}>
                 <h1>{img.heading}</h1>
                 <p>{img.text}</p>
-                {/* TODO(vf) Route to store */}
-                <button onClick={() => setCurrentImg(1)}>Shop Now</button>
+                <a href="/shop" className={style.shop_btn}>Shop Now!</a>
               </div>
             </div>
           </div>

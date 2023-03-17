@@ -1,0 +1,63 @@
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.header_top {
+  display: flex;
+  height: 50px;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  font-size: 30px;
+  gap: 10px;
+  width: fit-content;
+}
+
+.img_container {
+  display: flex;
+  max-height: 100%;
+  width: 30px;
+  justify-content: center;
+}
+
+.logo_img {
+  height: auto;
+  object-fit: contain;
+  overflow: hidden;
+}
+
+.cart_btn {
+  background-color: transparent;
+  border: none;
+  font-size: 100%;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar a {
+  padding: 5px 10px;
+  border-bottom: 3px solid transparent;
+}
+
+.active_link {
+  border-bottom: 3px solid red !important;
+  box-sizing: border-box;
+}
+
+.navbar a:hover {
+  color: white;
+  background-color: black;
+}
