@@ -1,0 +1,59 @@
+.main {
+  height: 100%;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  max-width: 800px;
+  height: fit-content;
+  align-self: center;
+}
+
+.thumbnail {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  overflow: hidden;
+}
+
+.thumb_image {
+  // height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.item_card {
+  // height: 250px;
+  min-width: 200px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.item_card:hover {
+  background-color: black;
+  color: white;
+}
+
+.item_title {
+  margin-top: 3px;
+  font-size: 1.2em;
+  font-weight: 800;
+}
+
+.price {
+  font-weight: 300;
+  font-size: 1.1em;
+}
+
+.add_cart {
+  background-color: #c7053d;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}

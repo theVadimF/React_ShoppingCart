@@ -1,4 +1,3 @@
-import { useState, SetStateAction } from "react"
 import style from '../styles/header.module.scss'
 
 import { useEffect } from 'react';
@@ -9,9 +8,6 @@ import logo from '../../assets/rpi_logo.png'
 
 export default function Header() {
   const location = useLocation();
-  useEffect(() => {
-    console.log('New path:', location.pathname);
-  }, [location.pathname]);
 
   return (
     <div className={style.header}>
