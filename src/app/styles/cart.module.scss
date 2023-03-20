@@ -1,0 +1,153 @@
+.overlay {
+  background-color: rgba($color: black, $alpha: 0.5);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.cart {
+  display: grid;
+  position: absolute;
+  background-color: white;
+  color: black;
+  height: 100%;
+  width: 100%;
+  max-width: 500px;
+  right: 0;
+  box-sizing: border-box;
+  padding: 15px;
+  grid-template-columns: 1fr 50px;
+  grid-template-rows: 50px 1fr;
+}
+
+.cart h1 {
+  align-self: center;
+}
+
+.close_btn {
+  background-color: transparent;
+  border: none;
+  font-size: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close_btn:hover {
+  background-color: black;
+  color: white;
+}
+
+.items {
+  grid-column: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.item {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 100px 1fr 40px;
+  height: fit-content;
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.item:hover {
+  background-color: black;
+  color: white;
+}
+
+.thumbnail {
+  height: 100px;
+  width: 100%;
+  background-color: white;
+}
+
+.thumbnail img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.title {
+  font-size: 1.2em;
+  font-weight: 800;
+}
+
+.price {
+  font-weight: 300;
+  font-size: 1.1em;
+}
+
+.item_middle {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.amount_box {
+  display: flex;
+  height: 25px;
+  margin-top: auto;
+}
+
+.amount_box input {
+  background-color: white;
+  border: none;
+  width: 50px;
+  text-align: center;
+}
+
+.amount_box button {
+  background-color: rgb(205, 205, 205);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove_btn {
+  background-color: transparent;
+  border: none;
+  color: rgb(255, 94, 94);
+  padding: 0;
+  font-size: 20px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.remove_btn:hover {
+  color: white;
+  background-color: rgb(255, 94, 94);
+}
+
+.checkout_btn {
+  width: fit-content;
+  background-color: #c7053d;
+  color: white;
+  border: none;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.total {
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.price_box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

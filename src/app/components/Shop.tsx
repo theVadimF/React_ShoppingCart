@@ -1,6 +1,6 @@
 import style from '../styles/shop.module.scss'
 import data from '../../assets/listings'
-import {FaCartPlus} from 'react-icons/fa'
+import {FaCartPlus, FaCartArrowDown} from 'react-icons/fa'
 
 function AddToCart() {
   return (

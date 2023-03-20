@@ -6,10 +6,12 @@ import gallery_data from '../assets/gallery_img';
 import style from './app.module.scss';
 import Header from './components/Header';
 import Shop from './components/Shop';
+import Cart from './components/Cart';
 
 export function App() {
   return (
     <BrowserRouter>
+      <Cart/>
       <div className={style.main}>
         <Header/>
         <Routes>

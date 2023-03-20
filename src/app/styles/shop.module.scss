@@ -1,9 +1,11 @@
 .main {
   height: 100%;
   overflow-y: auto;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  max-width: 800px;
+  grid-auto-rows: auto;
+  max-width: 1000px;
   height: fit-content;
   align-self: center;
 }
@@ -51,7 +53,7 @@
   border: none;
   color: white;
   padding: 10px 20px;
-  width: fit-content;
+  width: 145px;
   display: flex;
   align-items: center;
   gap: 10px;
