@@ -1,4 +1,4 @@
-import { useState, SetStateAction } from "react"
+import { useState, useEffect, SetStateAction, useRef } from "react"
 import style from "../styles/cart.module.scss"
 
 // TODO(vf) Remove this
@@ -11,51 +11,65 @@ import { IoBagCheckOutline } from 'react-icons/io5'
 
 const maxAmount = 99
 
-function Item() {
-  const [amount, setAmount] = useState(1);
+function Item( {id, data, removeFromCart, cartAmounts, setCartAmounts}: any ) {
+  // const [amount, setAmount] = useState(1);
+
+  // useEffect( () => {
+  //   data.amount = amount;
+  //   console.log(data);
+  // }, [amount, data])
+
+  function updateAmount(new_amount: number) {
+    setCartAmounts(e => [
+      ...e.slice(0, id),
+      new_amount,
+      ...e.slice(id + 1)
+    ])
+  }
 
   function checkZero(value: string) {
     if (value === '0') {
-      console.log('zero');
+      removeFromCart(data);
     }
   }
 
   function increaseAmount() {
-    if (amount < maxAmount) {
-      setAmount(e => e + 1);
+    if (cartAmounts[id] < maxAmount) {
+      updateAmount(cartAmounts[id] + 1);
+      // data.amount = amount + 1;
     }
   }
 
   function decreaseAmount() {
-    if (amount - 1 > 0) {
-      setAmount(e => e - 1);
+    if (cartAmounts[id] - 1 > 0) {
+      updateAmount(cartAmounts[id] - 1);
     } else {
-      console.log("zero")
+      removeFromCart(data);
     }
   }
 
   function setAmountLogic(value: string) {
     if (Number(value) <= maxAmount) {
-      setAmount(Number(value));
+      updateAmount(Number(value));
     } else {
-      setAmount(99);
+      updateAmount(99);
     }
   }
 
   return (
     <div className={style.item}>
       <div className={style.thumbnail}>
-        <img src={test} alt="" />
+        <img src={data.img} alt="" />
       </div>
       <div className={style.item_middle}>
-        <p className={style.title}>Raspberry Pi 4 4gb</p>
-        <p className={style.price}>200 USD</p>
+        <p className={style.title}>{data.title}</p>
+        <p className={style.price}>{data.price} USD</p>
         <div className={style.amount_box}>
           <button onClick={decreaseAmount}><AiOutlineMinus/></button>
           <input
             type="text"
             pattern="[0-9]*"
-            value={amount}
+            value={cartAmounts[id]}
             max='99'
             onKeyDown={e => {
               if (e.key === '-') {
@@ -68,23 +82,51 @@ function Item() {
           <button onClick={increaseAmount}><AiOutlinePlus/></button>
         </div>
       </div>
-      <button className={style.remove_btn}><FaTrashAlt/></button>
+      <button className={style.remove_btn} onClick={() => removeFromCart(data, id)}><FaTrashAlt/></button>
     </div>
   )
 }
 
-export default function Cart() {
+export default function Cart({ toggleCart, cartItems, removeFromCart, cartAmounts, setCartAmounts }: any) {
+  // const [totalVal, setTotalVal] = useState(0);
+
+  // useEffect(() => {
+  //   let total = 0;
+  //   console.log("fdasf");
+  //   cartItems.map((item: any) => {
+  //     total += item.price * item.amount;
+  //   })
+  //   setTotalVal(total);
+  // }, [cartItems])
+
+  function getTotal() {
+    let total = 0;
+    cartItems.map((item, id) => {
+      total += item.price * cartAmounts[id];
+    })
+    return total;
+  }
+
   return (
     <div className={style.overlay}>
       <div className={style.cart}>
         <h1>Cart</h1>
-        <button className={style.close_btn}><IoMdClose/></button>
+        <button className={style.close_btn} onClick={toggleCart}><IoMdClose/></button>
         <div className={style.items}>
-          <Item/>
-          <div className={style.price_box}>
-            <button className={style.checkout_btn}><IoBagCheckOutline/>Checkout</button>
-            <p className={style.total}>200 USD</p>
-          </div>
+          {cartItems.map( (item: any, id: number) => (
+            <Item
+              key = {id}
+              id = {id}
+              data = {item}
+              cartAmounts = {cartAmounts}
+              setCartAmounts = {setCartAmounts}
+              removeFromCart = {removeFromCart}
+            />
+          ) )}
+        </div>
+        <div className={style.price_box}>
+          <button className={style.checkout_btn}><IoBagCheckOutline/>Checkout</button>
+          <p className={style.total}>{getTotal()} USD</p>
         </div>
       </div>
     </div>

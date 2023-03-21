@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa'
 import logo from '../../assets/rpi_logo.png'
 
-export default function Header() {
+export default function Header({ toggleCart }: any) {
   const location = useLocation();
 
   return (
@@ -18,7 +18,7 @@ export default function Header() {
           </div>
           <span>Scalped Pies</span>
         </div>
-        <button className={style.cart_btn}><FaShoppingCart/></button>
+        <button className={style.cart_btn} onClick={toggleCart}><FaShoppingCart/></button>
       </div>
       <nav className={style.navbar}>
         <a href="/" className={location.pathname === '/' ? style.active_link : ""}>Home</a>

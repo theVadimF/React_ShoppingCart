@@ -2,13 +2,19 @@ import style from '../styles/shop.module.scss'
 import data from '../../assets/listings'
 import {FaCartPlus, FaCartArrowDown} from 'react-icons/fa'
 
-function AddToCart() {
-  return (
-    <button className={style.add_cart}><FaCartPlus/>Add to cart</button>
-  )
+function AddToCart({data, cartItems, addToCart, toggleCart}: any) {
+  if (cartItems.includes(data)) {
+    return (
+      <button className={`${style.add_cart} ${style.in_cart}`} onClick={toggleCart}><FaCartArrowDown/>In Cart</button>
+    )
+  } else {
+    return (
+      <button className={style.add_cart} onClick={() => addToCart(data)}><FaCartPlus/>Add to cart</button>
+    )
+}
 }
 
-function Card({data}: any) {
+function Card({data, cartItems, addToCart, toggleCart}: any) {
   return (
     <div className={style.item_card}>
       <div className={style.thumbnail}>
@@ -16,18 +22,26 @@ function Card({data}: any) {
       </div>
       <p className={style.item_title}>{data.title}</p>
       <p className={style.price}>{data.price} USD</p>
-      <AddToCart/>
+      <AddToCart
+        data={data}
+        cartItems={cartItems}
+        addToCart={addToCart}
+        toggleCart={toggleCart}
+      />
     </div>
   )
 }
 
-export default function Shop() {
+export default function Shop({cartItems, addToCart, toggleCart}: any) {
   return (
     <div className={style.main}>
       {data.map((item, id) => (
         <Card
           data={item}
           key={id}
+          cartItems={cartItems}
+          addToCart={addToCart}
+          toggleCart={toggleCart}
         />
       ))}
     </div>

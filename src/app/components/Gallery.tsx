@@ -1,4 +1,4 @@
-import { useState, SetStateAction } from "react"
+import { useState, SetStateAction, useEffect } from "react"
 import style from '../styles/gallery.module.scss'
 import _ from 'lodash'
 import {FaAngleLeft, FaAngleRight, FaRegCircle, FaCircle} from 'react-icons/fa'
@@ -10,7 +10,7 @@ function NavBar({setImg, prevImg, nextImg, img_max}: any) {
   return (
     <div className={style.nav_bar}>
     {_.range(img_max).map((i) => {
-      if (i == currentImg) {
+      if (i === currentImg) {
         return <button key={i} onClick={() => setImg(i)} className={style.nav_btn}><FaCircle/></button>
       } else {
         return <button key={i} onClick={() => setImg(i)} className={style.nav_btn}><FaRegCircle/></button>
@@ -50,6 +50,11 @@ export default function Gallery({images}: any) {
     }
     setImg(currentImg);
   }
+
+  useEffect(() => {
+    const timer = setInterval(nextImg, 8000);
+    return () => clearInterval(timer);
+  })
 
   return (
     <div className={style.gallery_wrapper}>
