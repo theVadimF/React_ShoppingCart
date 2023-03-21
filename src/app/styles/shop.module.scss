@@ -37,6 +37,14 @@
   color: white;
 }
 
+@media (hover: none) {
+  .item_card:hover {
+    background-color: inherit;
+    color: inherit;
+  }
+}
+
+
 .item_title {
   margin-top: 3px;
   font-size: 1.2em;

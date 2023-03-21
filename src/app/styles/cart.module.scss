@@ -40,6 +40,13 @@
   color: white;
 }
 
+@media (hover: none) {
+  .close_btn:hover {
+    background-color: inherit;
+    color: inherit;
+  }
+}
+
 .items {
   grid-column: 1 / 3;
   display: flex;
@@ -63,6 +70,14 @@
   background-color: black;
   color: white;
 }
+
+@media (hover: none) {
+  .item:hover {
+    background-color: inherit;
+    color: inherit;
+  }
+}
+
 
 .thumbnail {
   height: 100px;
@@ -129,6 +144,13 @@
 .remove_btn:hover {
   color: white;
   background-color: rgb(255, 94, 94);
+}
+
+@media (hover: none) {
+  .remove_btn:hover {
+    background-color: inherit;
+    color: inherit;
+  }
 }
 
 .checkout_btn {
