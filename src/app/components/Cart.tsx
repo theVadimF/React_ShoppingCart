@@ -1,23 +1,23 @@
-import { useState, useEffect, SetStateAction, useRef } from "react"
+import { SetStateAction } from "react"
 import style from "../styles/cart.module.scss"
-
-// TODO(vf) Remove this
-import test from "../../assets/product_pics/pi4_2gb/1.jpg"
 
 import { IoMdClose } from 'react-icons/io'
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai'
 import { FaTrashAlt } from 'react-icons/fa'
 import { IoBagCheckOutline } from 'react-icons/io5'
+import { dataProp } from '../../assets/listings'
 
 const maxAmount = 99
 
-function Item( {id, data, removeFromCart, cartAmounts, setCartAmounts}: any ) {
-  // const [amount, setAmount] = useState(1);
+interface itemProps {
+  id: number;
+  data: dataProp
+  removeFromCart(data: dataProp, id: number): void;
+  cartAmounts: number[];
+  setCartAmounts: React.Dispatch<SetStateAction<number[]>>
+}
 
-  // useEffect( () => {
-  //   data.amount = amount;
-  //   console.log(data);
-  // }, [amount, data])
+function Item( {id, data, removeFromCart, cartAmounts, setCartAmounts}: itemProps ) {
 
   function updateAmount(new_amount: number) {
     setCartAmounts(e => [
@@ -29,14 +29,13 @@ function Item( {id, data, removeFromCart, cartAmounts, setCartAmounts}: any ) {
 
   function checkZero(value: string) {
     if (value === '0') {
-      removeFromCart(data);
+      removeFromCart(data, id);
     }
   }
 
   function increaseAmount() {
     if (cartAmounts[id] < maxAmount) {
       updateAmount(cartAmounts[id] + 1);
-      // data.amount = amount + 1;
     }
   }
 
@@ -44,7 +43,7 @@ function Item( {id, data, removeFromCart, cartAmounts, setCartAmounts}: any ) {
     if (cartAmounts[id] - 1 > 0) {
       updateAmount(cartAmounts[id] - 1);
     } else {
-      removeFromCart(data);
+      removeFromCart(data, id);
     }
   }
 
@@ -87,21 +86,19 @@ function Item( {id, data, removeFromCart, cartAmounts, setCartAmounts}: any ) {
   )
 }
 
-export default function Cart({ toggleCart, cartItems, removeFromCart, cartAmounts, setCartAmounts }: any) {
-  // const [totalVal, setTotalVal] = useState(0);
+interface cartProps {
+  toggleCart(): void;
+  cartItems: dataProp[];
+  removeFromCart(data: dataProp, id: number): void;
+  cartAmounts: number[];
+  setCartAmounts: React.Dispatch<SetStateAction<number[]>>
+}
 
-  // useEffect(() => {
-  //   let total = 0;
-  //   console.log("fdasf");
-  //   cartItems.map((item: any) => {
-  //     total += item.price * item.amount;
-  //   })
-  //   setTotalVal(total);
-  // }, [cartItems])
+export default function Cart({ toggleCart, cartItems, removeFromCart, cartAmounts, setCartAmounts }: cartProps) {
 
   function getTotal() {
     let total = 0;
-    cartItems.map((item, id) => {
+    cartItems.forEach((item, id) => {
       total += item.price * cartAmounts[id];
     })
     return total;
@@ -113,7 +110,7 @@ export default function Cart({ toggleCart, cartItems, removeFromCart, cartAmount
         <h1>Cart</h1>
         <button className={style.close_btn} onClick={toggleCart}><IoMdClose/></button>
         <div className={style.items}>
-          {cartItems.map( (item: any, id: number) => (
+          {cartItems.map( (item: dataProp, id: number) => (
             <Item
               key = {id}
               id = {id}

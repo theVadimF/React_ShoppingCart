@@ -1,12 +1,15 @@
 import style from '../styles/header.module.scss'
 
-import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { FaShoppingCart } from 'react-icons/fa'
 import logo from '../../assets/rpi_logo.png'
 
-export default function Header({ toggleCart }: any) {
+interface headerProps {
+  toggleCart(): void,
+}
+
+export default function Header({ toggleCart }: headerProps) {
   const location = useLocation();
 
   return (

@@ -1,8 +1,16 @@
 import style from '../styles/shop.module.scss'
 import data from '../../assets/listings'
+import { dataProp } from '../../assets/listings'
 import {FaCartPlus, FaCartArrowDown} from 'react-icons/fa'
 
-function AddToCart({data, cartItems, addToCart, toggleCart}: any) {
+interface cardProps {
+  data: dataProp,
+  cartItems: dataProp[];
+  addToCart(data: dataProp): void;
+  toggleCart(): void;
+}
+
+function AddToCart({data, cartItems, addToCart, toggleCart}: cardProps) {
   if (cartItems.includes(data)) {
     return (
       <button className={`${style.add_cart} ${style.in_cart}`} onClick={toggleCart}><FaCartArrowDown/>In Cart</button>
@@ -14,7 +22,7 @@ function AddToCart({data, cartItems, addToCart, toggleCart}: any) {
 }
 }
 
-function Card({data, cartItems, addToCart, toggleCart}: any) {
+function Card({data, cartItems, addToCart, toggleCart}: cardProps) {
   return (
     <div className={style.item_card}>
       <div className={style.thumbnail}>
@@ -32,7 +40,13 @@ function Card({data, cartItems, addToCart, toggleCart}: any) {
   )
 }
 
-export default function Shop({cartItems, addToCart, toggleCart}: any) {
+interface shopProps {
+  cartItems: dataProp[];
+  addToCart(data: dataProp): void;
+  toggleCart(): void;
+}
+
+export default function Shop({cartItems, addToCart, toggleCart}: shopProps) {
   return (
     <div className={style.main}>
       {data.map((item, id) => (

@@ -1,26 +1,26 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import 'normalize.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState, SetStateAction } from "react"
+import { useState } from "react"
 import Gallery from './components/Gallery';
 import gallery_data from '../assets/gallery_img';
 import style from './app.module.scss';
 import Header from './components/Header';
 import Shop from './components/Shop';
 import Cart from './components/Cart';
+import { dataProp } from 'src/assets/listings';
 
-// TODO(vf) Remove all any types
 export function App() {
-  const [cartStare, setCartState] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
-  const [cartAmounts, setCartAmounts] = useState([]);
+  const [cartStare, setCartState] = useState<boolean>(false);
+  const [cartItems, setCartItems] = useState<dataProp[]>([]);
+  const [cartAmounts, setCartAmounts] = useState<number[]>([]);
 
 
   function toggleCart() {
     setCartState(e => !e);
   }
 
-  function addToCart(data: any) {
+  function addToCart(data: dataProp) {
     setCartItems(e => [
       ...e,
       data
@@ -31,7 +31,7 @@ export function App() {
     ])
   }
 
-  function removeFromCart(data: any, id: number) {
+  function removeFromCart(data: dataProp, id: number) {
     setCartItems(items => items.filter(e => e !== data));
     setCartAmounts(cartAmounts.filter((item, index) => id !== index));
   }

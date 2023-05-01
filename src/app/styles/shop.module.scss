@@ -24,24 +24,11 @@
 }
 
 .item_card {
-  // height: 250px;
   min-width: 200px;
   height: fit-content;
   display: flex;
   flex-direction: column;
   padding: 15px;
-}
-
-.item_card:hover {
-  background-color: black;
-  color: white;
-}
-
-@media (hover: none) {
-  .item_card:hover {
-    background-color: inherit;
-    color: inherit;
-  }
 }
 
 

@@ -2,6 +2,13 @@ import pi4_2gb from './product_pics/pi4_2gb/1.jpg'
 import pi4_4gb from './product_pics/pi4_4gb/1.jpg'
 import pi4_8gb from './product_pics/pi4_8gb/1.jpg'
 
+// TODO(vf) Maybe find another way to do this...
+export interface dataProp {
+  title: string,
+  price: number,
+  img: string,
+}
+
 const data = [
   {
     title: "Raspberry Pi 4 1gb",

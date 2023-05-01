@@ -2,6 +2,13 @@ import img1 from "./gallery/1.jpg"
 import img2 from "./gallery/2.jpg"
 import img3 from "./gallery/3.jpg"
 
+// TODO(vf) Find a better way to do this
+export interface galleryProps {
+  heading: string,
+  text: string,
+  img: string
+}
+
 const gallery_data = [
   {
     heading: "Can't find a Pi?",

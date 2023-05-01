@@ -1,12 +1,18 @@
-import { useState, SetStateAction, useEffect } from "react"
+import { useState, useEffect } from "react"
 import style from '../styles/gallery.module.scss'
 import _ from 'lodash'
 import {FaAngleLeft, FaAngleRight, FaRegCircle, FaCircle} from 'react-icons/fa'
-
+import { galleryProps } from "src/assets/gallery_img"
 let currentImg = 0;
 
+interface navBarProps {
+  setImg(i: number): void,
+  prevImg(): void,
+  nextImg(): void,
+  img_max: number,
+}
 
-function NavBar({setImg, prevImg, nextImg, img_max}: any) {
+function NavBar({setImg, prevImg, nextImg, img_max}: navBarProps) {
   return (
     <div className={style.nav_bar}>
     {_.range(img_max).map((i) => {
@@ -23,7 +29,11 @@ function NavBar({setImg, prevImg, nextImg, img_max}: any) {
   )
 }
 
-export default function Gallery({images}: any) {
+interface galleryInterface {
+  images: galleryProps[]
+}
+
+export default function Gallery({images}: galleryInterface) {
   const [imgPos, setImgPos] = useState({transform: 'translate(0vw)'})
 
   const img_max = images.length;
@@ -52,14 +62,14 @@ export default function Gallery({images}: any) {
   }
 
   useEffect(() => {
-    const timer = setInterval(nextImg, 8000);
+    const timer = setInterval(nextImg, 5000);
     return () => clearInterval(timer);
   })
 
   return (
     <div className={style.gallery_wrapper}>
       <div className={style.images} style={imgPos}>
-        {images.map((img: string, id) => (
+        {images.map((img: galleryProps, id: number) => (
           <div className={style.img_wrapper} key={id}>
             <img alt="promo background" src={img.img} className={style.bg}/>
             <div className={style.img_overlay}>
