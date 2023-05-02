@@ -16,9 +16,7 @@ export default function Header({ toggleCart }: headerProps) {
     <div className={style.header}>
       <div className={style.header_top}>
         <div className={style.logo}>
-          <div className={style.img_container}>
-            <img src={logo} alt="" className={style.logo_img}/>
-          </div>
+          <img src={logo} alt="Raspberry Pi logo" className={style.img_container}/>
           <span>Scalped Pies</span>
         </div>
         <button className={style.cart_btn} onClick={toggleCart}><FaShoppingCart/></button>

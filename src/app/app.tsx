@@ -11,7 +11,7 @@ import Cart from './components/Cart';
 import { dataProp } from 'src/assets/listings';
 
 export function App() {
-  const [cartStare, setCartState] = useState<boolean>(false);
+  const [cartState, setCartState] = useState<boolean>(false);
   const [cartItems, setCartItems] = useState<dataProp[]>([]);
   const [cartAmounts, setCartAmounts] = useState<number[]>([]);
 
@@ -38,7 +38,7 @@ export function App() {
 
   return (
     <BrowserRouter>
-      {cartStare &&
+      {cartState &&
       <Cart
         toggleCart = {toggleCart}
         cartItems = {cartItems}

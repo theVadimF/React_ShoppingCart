@@ -57,9 +57,7 @@ function Item( {id, data, removeFromCart, cartAmounts, setCartAmounts}: itemProp
 
   return (
     <div className={style.item}>
-      <div className={style.thumbnail}>
-        <img src={data.img} alt="" />
-      </div>
+      <img src={data.img} className={style.thumbnail} alt="" />
       <div className={style.item_middle}>
         <p className={style.title}>{data.title}</p>
         <p className={style.price}>{data.price} USD</p>

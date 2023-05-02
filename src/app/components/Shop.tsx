@@ -25,9 +25,9 @@ function AddToCart({data, cartItems, addToCart, toggleCart}: cardProps) {
 function Card({data, cartItems, addToCart, toggleCart}: cardProps) {
   return (
     <div className={style.item_card}>
-      <div className={style.thumbnail}>
+      {/* <div className={style.thumbnail}> */}
         <img src={data.img} alt="product" className={style.thumb_image} />
-      </div>
+      {/* </div> */}
       <p className={style.item_title}>{data.title}</p>
       <p className={style.price}>{data.price} USD</p>
       <AddToCart
