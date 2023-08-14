@@ -11,16 +11,16 @@ export interface galleryProps {
 
 const gallery_data = [
   {
-    heading: "Can't find a Pi?",
-    text: "You can find one here for a ridiculous price!",
+    heading: "Welcome to Scalped Pie's",
+    text: "Buy a Pi now",
     img: img1
   }, {
-    heading: "MSRP? Forget about it!",
-    text: "Scalper prices are where it's at!",
+    heading: "We have stock",
+    text: "But you have to pay extra for it",
     img: img2
   }, {
-    heading: "What are you waiting for?",
-    text: "Hop in and waste your money NOW!",
+    heading: "We have the best prices",
+    text: "(this may be a lie)",
     img: img3
   }
 ]
